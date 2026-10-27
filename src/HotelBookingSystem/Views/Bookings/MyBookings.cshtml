@@ -1,0 +1,13 @@
+@model IEnumerable<Booking>
+@{
+    ViewData["Title"] = "My bookings";
+    var email = ViewBag.Email as string ?? "";
+}
+<section class="container section-space"><span class="eyebrow text-accent">YOUR STAYS</span><h1 class="section-title">My bookings</h1><p class="text-secondary">Bookings for @email</p>
+@if (!Model.Any()) { <div class="empty-state"><h3>No bookings found</h3><p>Check the email address and try again.</p><a class="btn btn-primary" asp-controller="Home" asp-action="Index">Find a room</a></div> }
+else {
+ <div class="table-responsive"><table class="table align-middle booking-table"><thead><tr><th>Reference</th><th>Room</th><th>Dates</th><th>Total</th><th>Status</th><th></th></tr></thead><tbody>
+ @foreach(var b in Model) { <tr><td>#ST-@b.Id.ToString("D5")</td><td>@b.Room?.Name</td><td>@b.CheckIn.ToString("dd MMM") – @b.CheckOut.ToString("dd MMM yyyy")</td><td>₹@b.TotalPrice.ToString("N0")</td><td><span class="status-pill">@b.Status</span></td><td>@if(b.Status != BookingStatus.Cancelled && b.CheckIn.Date > DateTime.Today) { <form asp-action="Cancel" method="post"><input type="hidden" name="id" value="@b.Id" /><input type="hidden" name="email" value="@email" /><button class="btn btn-sm btn-outline-danger">Cancel</button></form> }</td></tr> }
+ </tbody></table></div>
+}
+</section>

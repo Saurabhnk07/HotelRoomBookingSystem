@@ -1,0 +1,6 @@
+@model IEnumerable<Room>
+@{
+    ViewData["Title"] = "Manage rooms";
+}
+<section class="container section-space"><div class="d-flex justify-content-between align-items-center mb-4"><div><span class="eyebrow text-accent">INVENTORY</span><h1 class="section-title">Manage rooms</h1></div><a class="btn btn-primary" asp-action="CreateRoom">+ Add room</a></div>
+<div class="table-responsive"><table class="table align-middle booking-table"><thead><tr><th>Room</th><th>Type</th><th>Capacity</th><th>Price/night</th><th>Public listing</th><th></th></tr></thead><tbody>@foreach(var r in Model){<tr><td><strong>@r.Name</strong></td><td>@r.RoomType</td><td>@r.Capacity</td><td>₹@r.PricePerNight.ToString("N0")</td><td>@(r.IsActive ? "Active" : "Hidden")</td><td><a class="btn btn-sm btn-outline-primary" asp-action="EditRoom" asp-route-id="@r.Id">Edit</a></td></tr>}</tbody></table></div></section>

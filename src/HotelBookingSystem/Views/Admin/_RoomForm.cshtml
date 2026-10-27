@@ -1,0 +1,8 @@
+@model Room
+<div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+<div class="mb-3"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control"/><span asp-validation-for="Name" class="text-danger small"></span></div>
+<div class="mb-3"><label asp-for="RoomType" class="form-label"></label><select asp-for="RoomType" class="form-select"><option>Standard</option><option>Deluxe</option><option>Suite</option><option>Family</option></select></div>
+<div class="row g-3"><div class="col-6 mb-3"><label asp-for="Capacity" class="form-label"></label><input asp-for="Capacity" class="form-control"/><span asp-validation-for="Capacity" class="text-danger small"></span></div><div class="col-6 mb-3"><label asp-for="PricePerNight" class="form-label"></label><input asp-for="PricePerNight" class="form-control"/><span asp-validation-for="PricePerNight" class="text-danger small"></span></div></div>
+<div class="mb-3"><label asp-for="Description" class="form-label"></label><textarea asp-for="Description" class="form-control" rows="3"></textarea></div>
+<div class="mb-3"><label asp-for="ImageUrl" class="form-label"></label><input asp-for="ImageUrl" class="form-control"/><div class="form-text">Use an image URL or leave blank.</div></div>
+<div class="form-check mb-4"><input asp-for="IsActive" class="form-check-input"/><label asp-for="IsActive" class="form-check-label">Show this room to guests</label></div>

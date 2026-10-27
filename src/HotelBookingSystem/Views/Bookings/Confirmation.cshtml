@@ -1,0 +1,19 @@
+@model Booking
+@{
+    ViewData["Title"] = "Booking confirmed";
+}
+<section class="container section-space"><div class="confirmation-card mx-auto text-center">
+ <div class="success-icon">✓</div><span class="eyebrow text-accent">YOU'RE ALL SET</span><h1 class="section-title">Booking confirmed</h1>
+ <p class="text-secondary">Thank you, @Model.GuestName. We look forward to welcoming you.</p>
+ <div class="booking-receipt text-start">
+  <div><span>Booking reference</span><strong>#ST-@Model.Id.ToString("D5")</strong></div>
+  <div><span>Room</span><strong>@Model.Room?.Name</strong></div>
+  <div><span>Check-in</span><strong>@Model.CheckIn.ToString("dd MMM yyyy")</strong></div>
+  <div><span>Check-out</span><strong>@Model.CheckOut.ToString("dd MMM yyyy")</strong></div>
+  <div><span>Guests</span><strong>@Model.Guests</strong></div>
+  <div><span>Status</span><strong class="text-success">@Model.Status</strong></div>
+  <div class="receipt-total"><span>Total (@(Model.CheckOut - Model.CheckIn).Days night(s))</span><strong>₹@Model.TotalPrice.ToString("N0")</strong></div>
+ </div>
+ <a class="btn btn-primary mt-4" asp-controller="Home" asp-action="Index">Explore more rooms</a>
+ <p class="small text-secondary mt-3">Save your booking reference and use the same email to look up your booking.</p>
+</div></section>

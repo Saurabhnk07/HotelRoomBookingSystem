@@ -1,0 +1,35 @@
+@model IEnumerable<Room>
+@{
+    ViewData["Title"] = "Find your stay";
+}
+<section class="hero">
+ <div class="container hero-inner">
+  <span class="eyebrow">YOUR NEXT STAY STARTS HERE</span>
+  <h1>A little more comfort.<br><span>A lot more memorable.</span></h1>
+  <p>Find a room that feels right, whether you're here for work or a weekend away.</p>
+  <form method="get" class="search-panel row g-3 align-items-end">
+   <div class="col-12 col-md-4"><label class="form-label">Check-in</label><input class="form-control" type="date" name="checkIn" value="@ViewBag.CheckIn" required /></div>
+   <div class="col-12 col-md-4"><label class="form-label">Check-out</label><input class="form-control" type="date" name="checkOut" value="@ViewBag.CheckOut" required /></div>
+   <div class="col-7 col-md-2"><label class="form-label">Guests</label><select class="form-select" name="guests">@for(int i=1;i<=10;i++){<option value="@i" selected="@(i == (int)ViewBag.Guests)">@i</option>}</select></div>
+   <div class="col-5 col-md-2 d-grid"><button class="btn btn-primary">Search</button></div>
+  </form>
+ </div>
+</section>
+<section class="container section-space">
+ <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 gap-2"><div><span class="eyebrow text-accent">THOUGHTFULLY DESIGNED</span><h2 class="section-title">Rooms for every kind of trip</h2></div><span class="text-secondary">@Model.Count() room(s) available for your search</span></div>
+ <div class="row g-4">
+ @foreach (var room in Model) {
+  <div class="col-12 col-md-6 col-xl-4">
+   <article class="room-card h-100">
+    <img class="room-image" src="@(string.IsNullOrWhiteSpace(room.ImageUrl) ? "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1000&q=80" : room.ImageUrl)" alt="@room.Name" />
+    <div class="p-4">
+     <div class="d-flex justify-content-between align-items-center mb-2"><span class="room-type">@room.RoomType</span><span class="capacity">@room.Capacity guests</span></div>
+     <h3 class="h5 fw-bold">@room.Name</h3><p class="text-secondary room-desc">@room.Description</p>
+     <div class="d-flex justify-content-between align-items-center mt-4"><div><strong class="price">₹@room.PricePerNight.ToString("N0")</strong><span class="text-secondary small"> / night</span></div><a class="btn btn-outline-primary" asp-controller="Rooms" asp-action="Details" asp-route-id="@room.Id">View room</a></div>
+    </div>
+   </article>
+  </div>
+ }
+ @if (!Model.Any()) { <div class="col-12"><div class="empty-state"><h3>No rooms found</h3><p>Try different dates or a smaller guest count.</p></div></div> }
+ </div>
+</section>

@@ -1,0 +1,8 @@
+@{
+    ViewData["Title"] = "Find my bookings";
+}
+<section class="container section-space"><div class="row justify-content-center"><div class="col-12 col-md-7 col-lg-5">
+ <div class="form-card"><span class="eyebrow text-accent">YOUR TRIP, IN ONE PLACE</span><h1 class="section-title">Find your bookings</h1><p class="text-secondary">Enter the email address used when booking.</p>
+ <form asp-action="Find" method="post"><div asp-validation-summary="ModelOnly" class="text-danger small"></div><label class="form-label" for="email">Email address</label><input class="form-control mb-3" type="email" id="email" name="email" required placeholder="you@example.com" /><button class="btn btn-primary w-100">Find bookings</button></form>
+ </div>
+</div></div></section>

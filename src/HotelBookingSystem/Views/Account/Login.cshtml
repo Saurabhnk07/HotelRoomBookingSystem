@@ -1,0 +1,9 @@
+@model HotelBookingSystem.Controllers.LoginInput
+@{
+    ViewData["Title"] = "Staff login";
+}
+<section class="container section-space"><div class="row justify-content-center"><div class="col-12 col-md-7 col-lg-5"><div class="form-card">
+ <span class="eyebrow text-accent">STAFF ACCESS</span><h1 class="section-title">Welcome back</h1><p class="text-secondary">Sign in to manage rooms and reservations.</p>
+ <form asp-action="Login" method="post"><div asp-validation-summary="ModelOnly" class="alert alert-danger"></div><div class="mb-3"><label asp-for="Email" class="form-label"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger small"></span></div><div class="mb-4"><label asp-for="Password" class="form-label"></label><input asp-for="Password" class="form-control" /><span asp-validation-for="Password" class="text-danger small"></span></div><button class="btn btn-primary w-100">Sign in</button></form>
+ <p class="small text-secondary mt-3">Demo credentials are listed in README.md. Change them before deployment.</p>
+ </div></div></div></section>
